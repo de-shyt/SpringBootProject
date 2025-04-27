@@ -24,5 +24,6 @@ hs_err_pid*
 replay_pid*
 
 # Ignore build
-.gradle/
-build/
+.gradle
+.idea
+build

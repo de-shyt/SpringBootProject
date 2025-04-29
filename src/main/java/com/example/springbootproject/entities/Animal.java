@@ -1,16 +1,10 @@
 package com.example.springbootproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Animal {
-    @JsonProperty("species")
     private final String species;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("age")
     private int age;
-    @JsonProperty("owner")
-    private Human owner;
+    private Person owner;
 
     public Animal(String species, String name, int age) {
         this.species = species;
@@ -18,7 +12,23 @@ public class Animal {
         this.age = age;
     }
 
-    public void setOwner(Human owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Person getOwner() {
+        return owner;
     }
 }

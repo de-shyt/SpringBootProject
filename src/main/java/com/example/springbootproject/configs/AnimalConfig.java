@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AnimalConfig {
     @Bean
-    public Animal mouse() {
+    public Animal mouseJerry() {
         return new Mouse("Jerry", 3);
     }
 
     @Bean
-    public Animal cat() {
+    public Animal catTom() {
         return new Cat("Tom", 5);
     }
 }

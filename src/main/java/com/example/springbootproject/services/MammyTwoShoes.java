@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MammyTwoShoes extends Human {
 
-    public MammyTwoShoes(@Autowired Animal cat) {
+    public MammyTwoShoes(@Autowired Animal catTom) {
         super("Mammy Two Shoes", "Female", 36);
-        this.setAnimal(cat);
-        cat.setOwner(this);
+        this.setAnimal(catTom);
+        catTom.setOwner(this);
     }
 
     @GetMapping("/mammyTwoShoes")

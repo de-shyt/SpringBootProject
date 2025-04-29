@@ -1,6 +1,5 @@
-package com.example.springbootproject.services;
+package com.example.springbootproject.entities;
 
-import com.example.springbootproject.animals.Animal;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Human {

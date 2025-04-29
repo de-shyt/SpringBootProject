@@ -1,4 +1,4 @@
-package com.example.springbootproject.animals;
+package com.example.springbootproject.entities;
 
 public class Cat extends Animal{
     public Cat(String name, int age) {

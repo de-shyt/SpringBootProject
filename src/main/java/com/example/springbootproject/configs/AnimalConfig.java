@@ -1,8 +1,8 @@
 package com.example.springbootproject.configs;
 
-import com.example.springbootproject.animals.Animal;
-import com.example.springbootproject.animals.Cat;
-import com.example.springbootproject.animals.Mouse;
+import com.example.springbootproject.entities.Animal;
+import com.example.springbootproject.entities.Cat;
+import com.example.springbootproject.entities.Mouse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

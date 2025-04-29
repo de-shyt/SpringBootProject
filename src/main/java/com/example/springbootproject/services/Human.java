@@ -12,10 +12,13 @@ public class Human {
     private int age;
     protected Animal animal;
 
-    public Human(String name, String gender, int age, Animal animal) {
+    public Human(String name, String gender, int age) {
         this.name = name;
         this.gender = gender;
         this.age = age;
+    }
+
+    public void setAnimal(Animal animal) {
         this.animal = animal;
     }
 }

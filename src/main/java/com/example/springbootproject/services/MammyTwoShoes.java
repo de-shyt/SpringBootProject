@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MammyTwoShoes extends Human {
 
     public MammyTwoShoes(@Autowired Animal cat) {
-        super("Mammy Two Shoes", "Female", 36, cat);
+        super("Mammy Two Shoes", "Female", 36);
+        this.setAnimal(cat);
         cat.setOwner(this);
     }
 

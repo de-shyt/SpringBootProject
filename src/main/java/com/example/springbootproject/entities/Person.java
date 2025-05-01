@@ -6,17 +6,12 @@ public class Person {
     private final String name;
     private final String gender;
     private final Integer age;
-    protected Animal animal;
 
     public Person(int id, String name, String gender, int age) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
     }
 
     public Integer getId() {
@@ -33,9 +28,5 @@ public class Person {
 
     public int getAge() {
         return age;
-    }
-
-    public Animal getAnimal() {
-        return animal;
     }
 }

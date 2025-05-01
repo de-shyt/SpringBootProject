@@ -1,6 +1,5 @@
 package com.example.springbootproject.services;
 
-import com.example.springbootproject.entities.Animal;
 import com.example.springbootproject.entities.Person;
 import org.springframework.stereotype.Component;
 
@@ -26,13 +25,6 @@ public class PersonDatabase {
         int id = nextId++;
         Person person = new Person(id, name, gender, age);
         database.put(id, person);
-        return person;
-    }
-
-    public Person add(String name, String gender, int age, Animal animal) {
-        Person person = this.add(name, gender, age);
-        person.setAnimal(animal);
-        animal.setOwner(person);
         return person;
     }
 

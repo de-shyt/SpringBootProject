@@ -1,12 +1,9 @@
 package com.example.springbootproject.controllers;
 
 import com.example.springbootproject.entities.Person;
-import com.example.springbootproject.entities.json.AnimalJson;
-import com.example.springbootproject.entities.json.DatabaseEntryJson;
-import com.example.springbootproject.entities.json.PersonJson;
-import com.example.springbootproject.entities.json.PersonWithoutAnimalJson;
-import com.example.springbootproject.services.ExistingBeansService;
-import com.example.springbootproject.services.PersonDatabase;
+import com.example.springbootproject.dto.DatabaseEntryDTO;
+import com.example.springbootproject.dto.PersonDTO;
+import com.example.springbootproject.repositories.MockPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -19,52 +16,39 @@ public class PersonController {
     // Controls access to the existing beans.
     private final ExistingBeansService existingBeans;
 
-    public PersonController(@Autowired PersonDatabase database, @Autowired ExistingBeansService mammyTwoShoesController) {
+    @Autowired
+    public PersonController(PersonDatabase database) {
         this.database = database;
-        this.existingBeans = mammyTwoShoesController;
     }
 
     @PostMapping("/addPerson")
-    public PersonJson addPerson(@RequestBody PersonWithoutAnimalJson from) {
+    public PersonDTO addPerson(@RequestBody PersonDTO from) {
         Person person = database.add(from.getName(), from.getGender(), from.getAge());
-        return person == null ? null : new PersonJson(person);
+        return person == null ? null : new PersonDTO(person);
     }
 
     @GetMapping("/getPersonByName")
-    public List<PersonJson> getPersonByName(@RequestParam String name) {
+    public List<PersonDTO> getPersonByName(@RequestParam String name) {
         List<Person> res = database.getByName(name);
-        return res.isEmpty() ? null : res.stream().map(PersonJson::new).toList();
+        return res.isEmpty() ? null : res.stream().map(PersonDTO::new).toList();
     }
 
     @GetMapping("/getPersonById")
-    public PersonJson getPersonById(@RequestParam int id) {
+    public PersonDTO getPersonById(@RequestParam int id) {
         Person person = database.getById(id);
-        return person == null ? null : new PersonJson(person);
+        return person == null ? null : new PersonDTO(person);
     }
 
     @GetMapping("/getAll")
-    public List<DatabaseEntryJson> getAll() {
+    public List<DatabaseEntryDTO> getAll() {
         return database.getDatabase().entrySet().stream()
-                .map(e -> new DatabaseEntryJson(e.getKey(), new PersonJson(e.getValue())))
+                .map(e -> new DatabaseEntryDTO(e.getKey(), new PersonDTO(e.getValue())))
                 .toList();
     }
 
     @DeleteMapping("/removePersonById")
-    public PersonJson removePersonById(@RequestParam int id) {
+    public PersonDTO removePersonById(@RequestParam int id) {
         Person res = database.remove(id);
-        return res == null ? null : new PersonJson(res);
-    }
-
-
-    // Returns a cat "Tom" whose owner is a person "Mammy Two Shoes"
-    @GetMapping("/catTom")
-    public AnimalJson catTom() {
-        return existingBeans.catTom();
-    }
-
-    // Returns a person "Mammy Two Shoes" who owns a cat "Tom"
-    @GetMapping("/mammyTwoShoes")
-    public PersonJson mammyTwoShoes() {
-        return existingBeans.mammyTwoShoesPerson();
+        return res == null ? null : new PersonDTO(res);
     }
 }

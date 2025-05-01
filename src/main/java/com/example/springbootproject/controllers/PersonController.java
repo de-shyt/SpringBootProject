@@ -12,12 +12,10 @@ import java.util.List;
 @RestController
 public class PersonController {
     // Stores data about the people.
-    private final PersonDatabase database;
-    // Controls access to the existing beans.
-    private final ExistingBeansService existingBeans;
+    private final MockPersonRepository database;
 
     @Autowired
-    public PersonController(PersonDatabase database) {
+    public PersonController(MockPersonRepository database) {
         this.database = database;
     }
 

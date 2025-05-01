@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class PersonDatabase {
+public class MockPersonRepository {
     private int nextId = 0;
     private final Map<Integer, Person> database;
 
-    public PersonDatabase() {
+    public MockPersonRepository() {
         this.database = new HashMap<>();
     }
 

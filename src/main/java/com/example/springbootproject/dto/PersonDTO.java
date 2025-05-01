@@ -3,8 +3,12 @@ package com.example.springbootproject.dto;
 import com.example.springbootproject.entities.Person;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @JsonPropertyOrder({"id", "name", "gender", "age", "animal"})
+@NoArgsConstructor
+@Getter
 public class PersonDTO {
     @JsonProperty("id")
     private Integer id;
@@ -15,24 +19,10 @@ public class PersonDTO {
     @JsonProperty("age")
     private int age;
 
-    public PersonDTO() {}
-
     public PersonDTO(Person person) {
         this.id = person.getId();
         this.name = person.getName();
         this.gender = person.getGender();
         this.age = person.getAge();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public int getAge() {
-        return age;
     }
 }

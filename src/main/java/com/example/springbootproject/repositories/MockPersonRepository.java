@@ -1,6 +1,7 @@
 package com.example.springbootproject.services;
 
 import com.example.springbootproject.entities.Person;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,14 +12,11 @@ import java.util.Map;
 @Component
 public class MockPersonRepository {
     private int nextId = 0;
+    @Getter
     private final Map<Integer, Person> database;
 
     public MockPersonRepository() {
         this.database = new HashMap<>();
-    }
-
-    public Map<Integer, Person> getDatabase() {
-        return database;
     }
 
     public Person add(String name, String gender, int age) {
@@ -34,7 +32,7 @@ public class MockPersonRepository {
 
     public List<Person> getByName(String name) {
         List<Person> result = new ArrayList<>();
-        for (var person : database.values())
+        for (Person person : database.values())
             if (person.getName().equals(name)) result.add(person);
         return result;
     }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Person {
-    private final Integer id;
+    private final Long id;
     private final String name;
     private final String gender;
     private final Integer age;

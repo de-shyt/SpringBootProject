@@ -1,4 +1,4 @@
-package com.example.springbootproject.services;
+package com.example.springbootproject.repositories;
 
 import com.example.springbootproject.entities.Person;
 import lombok.Getter;
@@ -11,22 +11,22 @@ import java.util.Map;
 
 @Component
 public class MockPersonRepository {
-    private int nextId = 0;
+    private Long nextId = 0L;
     @Getter
-    private final Map<Integer, Person> database;
+    private final Map<Long, Person> database;
 
     public MockPersonRepository() {
         this.database = new HashMap<>();
     }
 
     public Person add(String name, String gender, int age) {
-        int id = nextId++;
+        Long id = nextId++;
         Person person = new Person(id, name, gender, age);
         database.put(id, person);
         return person;
     }
 
-    public Person getById(Integer id) {
+    public Person getById(Long id) {
         return database.get(id);
     }
 
@@ -37,7 +37,7 @@ public class MockPersonRepository {
         return result;
     }
 
-    public Person remove(Integer id) {
+    public Person remove(Long id) {
         return database.remove(id);
     }
 }

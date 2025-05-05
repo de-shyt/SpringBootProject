@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class DatabaseEntryDTO {
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
     @JsonProperty("person")
     private PersonDTO person;
 }

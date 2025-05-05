@@ -32,7 +32,7 @@ public class PersonController {
     }
 
     @GetMapping("/getPersonById")
-    public PersonDTO getPersonById(@RequestParam int id) {
+    public PersonDTO getPersonById(@RequestParam Long id) {
         Person person = database.getById(id);
         return person == null ? null : new PersonDTO(person);
     }
@@ -45,7 +45,7 @@ public class PersonController {
     }
 
     @DeleteMapping("/removePersonById")
-    public PersonDTO removePersonById(@RequestParam int id) {
+    public PersonDTO removePersonById(@RequestParam Long id) {
         Person res = database.remove(id);
         return res == null ? null : new PersonDTO(res);
     }

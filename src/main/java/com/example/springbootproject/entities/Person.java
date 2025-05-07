@@ -1,15 +1,23 @@
 package com.example.springbootproject.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
+//@Data
+@Entity
+@Table(name = "persons")
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Getter
 @Setter
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;
-    private final String name;
-    private final String gender;
-    private final Integer age;
+    @Column(nullable = false, length = 20)
+    private String name;
+    @Column(nullable = false, length = 12)
+    private String gender;
+    @Column(nullable = false)
+    private Integer age;
 }

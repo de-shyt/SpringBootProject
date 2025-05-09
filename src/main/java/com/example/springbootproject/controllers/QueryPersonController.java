@@ -1,7 +1,7 @@
 package com.example.springbootproject.controllers;
 
 import com.example.springbootproject.dto.PersonDTO;
-import com.example.springbootproject.services.GetPersonService;
+import com.example.springbootproject.services.QueryPersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class GetPersonController {
-    private final GetPersonService personService;
+public class QueryPersonController {
+    private final QueryPersonService personService;
 
     @GetMapping("getPersonByName/{name}")
     public List<PersonDTO> getPersonByName(@PathVariable("name") String personName) {

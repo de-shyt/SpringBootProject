@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PersonServiceImpl implements BasePersonService, GetPersonService, ModifyPersonService {
+public class PersonServiceImpl implements BasePersonService, QueryPersonService, MutationPersonService {
     private final PersonRepo repo;
 
     @Override
@@ -44,11 +44,11 @@ public class PersonServiceImpl implements BasePersonService, GetPersonService, M
     }
 
     @Override
-    public PersonDTO remove(Long id) {
+    public void remove(Long id) {
         Person person = repo.findById(id).orElse(null);
-        if (person == null) return null;
+        if (person == null) return;
         repo.delete(person);
-        return PersonMapper.toPersonDTO(person);
+        PersonMapper.toPersonDTO(person);
     }
 
     @Override

@@ -4,5 +4,5 @@ import com.example.springbootproject.dto.PersonDTO;
 
 public interface BasePersonService {
     PersonDTO create(PersonDTO personDTO);
-    PersonDTO remove(Long id);
+    void remove(Long id);
 }

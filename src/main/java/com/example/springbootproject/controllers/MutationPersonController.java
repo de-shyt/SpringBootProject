@@ -1,7 +1,7 @@
 package com.example.springbootproject.controllers;
 
 import com.example.springbootproject.dto.PersonDTO;
-import com.example.springbootproject.services.ModifyPersonService;
+import com.example.springbootproject.services.MutationPersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-public class ModifyPersonController {
-    private final ModifyPersonService personService;
+public class MutationPersonController {
+    private final MutationPersonService personService;
 
     @PutMapping("/updateAge/{id}")
     public PersonDTO updateAge(@PathVariable("id") Long id) {

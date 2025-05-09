@@ -17,7 +17,7 @@ public class BasePersonController {
     }
 
     @DeleteMapping("/removePersonById/{id}")
-    public PersonDTO removePersonById(@PathVariable("id") Long personId) {
-        return personService.remove(personId);
+    public void removePersonById(@PathVariable("id") Long personId) {
+        personService.remove(personId);
     }
 }

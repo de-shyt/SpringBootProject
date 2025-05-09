@@ -23,9 +23,9 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
 
     @Override
     public PersonDTO getById(Long id) {
-        Person person = repo.findById(id).orElse(null);
-        if (person == null) return null;
-        return PersonMapper.toPersonDTO(person);
+        return repo.findById(id)
+                .map(PersonMapper::toPersonDTO)
+                .orElse(null);
     }
 
     @Override
@@ -45,36 +45,39 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
 
     @Override
     public void remove(Long id) {
-        Person person = repo.findById(id).orElse(null);
-        if (person == null) return;
-        repo.delete(person);
-        PersonMapper.toPersonDTO(person);
+        repo.findById(id).ifPresent(repo::delete);
     }
 
     @Override
     public PersonDTO increaseAgeByOne(Long id) {
-        Person person = repo.findById(id).orElse(null);
-        if (person == null) return null;
-        person.setAge(person.getAge() + 1);
-        Person updatedPerson = repo.save(person);
-        return PersonMapper.toPersonDTO(updatedPerson);
+        return repo.findById(id)
+                .map(person -> {
+                    person.setAge(person.getAge() + 1);
+                    return repo.save(person);
+                })
+                .map(PersonMapper::toPersonDTO)
+                .orElse(null);
     }
 
     @Override
     public PersonDTO changeName(Long id, String newName) {
-        Person person = repo.findById(id).orElse(null);
-        if (person == null) return null;
-        person.setName(newName);
-        Person updatedPerson = repo.save(person);
-        return PersonMapper.toPersonDTO(updatedPerson);
+        return repo.findById(id)
+                .map(person -> {
+                    person.setName(newName);
+                    return repo.save(person);
+                })
+                .map(PersonMapper::toPersonDTO)
+                .orElse(null);
     }
 
     @Override
     public PersonDTO changeGender(Long id, String newGender) {
-        Person person = repo.findById(id).orElse(null);
-        if (person == null) return null;
-        person.setGender(newGender);
-        Person updatedPerson = repo.save(person);
-        return PersonMapper.toPersonDTO(updatedPerson);
+        return repo.findById(id)
+                .map(person -> {
+                    person.setGender(newGender);
+                    return repo.save(person);
+                })
+                .map(PersonMapper::toPersonDTO)
+                .orElse(null);
     }
 }

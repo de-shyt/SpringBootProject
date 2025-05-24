@@ -16,8 +16,8 @@ public class BasePersonController {
         return personService.create(personDTO);
     }
 
-    @DeleteMapping("/removePersonById/{id}")
-    public void removePersonById(@PathVariable("id") Long personId) {
+    @DeleteMapping("/removePersonById")
+    public void removePersonById(@RequestParam("id") Long personId) {
         personService.remove(personId);
     }
 }

@@ -3,7 +3,6 @@ package com.example.springbootproject.controllers;
 import com.example.springbootproject.dto.PersonDTO;
 import com.example.springbootproject.services.MutationPersonService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MutationPersonController {
     private final MutationPersonService personService;
 
-    @PutMapping("/updateAge/{id}")
-    public PersonDTO updateAge(@PathVariable("id") Long id) {
-        return personService.increaseAgeByOne(id);
+    @PutMapping("/updateAge")
+    public PersonDTO updateAge(@RequestParam("id") Long personId) {
+        return personService.increaseAgeByOne(personId);
     }
 
     @PutMapping("/changeName")

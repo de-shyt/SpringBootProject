@@ -12,35 +12,36 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PersonServiceImpl implements BasePersonService, QueryPersonService, MutationPersonService {
+    private final PersonMapper personMapper;
     private final PersonRepo repo;
 
     @Override
     public PersonDTO create(PersonDTO personDTO) {
-        Person person = PersonMapper.toPerson(personDTO);
+        Person person = personMapper.toPerson(personDTO);
         Person savedPerson = repo.save(person);
-        return PersonMapper.toPersonDTO(savedPerson);
+        return personMapper.toPersonDTO(savedPerson);
     }
 
     @Override
     public PersonDTO getById(Long id) {
         return repo.findById(id)
-                .map(PersonMapper::toPersonDTO)
+                .map(personMapper::toPersonDTO)
                 .orElse(null);
     }
 
     @Override
     public List<PersonDTO> getByName(String name) {
-        return PersonMapper.toPersonDTO(repo.findByName(name));
+        return personMapper.toPersonDTO(repo.findByName(name));
     }
 
     @Override
     public List<PersonDTO> getByAgeInRange(int minAge, int maxAge) {
-        return PersonMapper.toPersonDTO(repo.findByAgeBetween(minAge, maxAge));
+        return personMapper.toPersonDTO(repo.findByAgeBetween(minAge, maxAge));
     }
 
     @Override
     public List<PersonDTO> getAll() {
-        return PersonMapper.toPersonDTO(repo.findAll());
+        return personMapper.toPersonDTO(repo.findAll());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     person.setAge(person.getAge() + 1);
                     return repo.save(person);
                 })
-                .map(PersonMapper::toPersonDTO)
+                .map(personMapper::toPersonDTO)
                 .orElse(null);
     }
 
@@ -66,7 +67,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     person.setName(newName);
                     return repo.save(person);
                 })
-                .map(PersonMapper::toPersonDTO)
+                .map(personMapper::toPersonDTO)
                 .orElse(null);
     }
 
@@ -77,7 +78,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     person.setGender(newGender);
                     return repo.save(person);
                 })
-                .map(PersonMapper::toPersonDTO)
+                .map(personMapper::toPersonDTO)
                 .orElse(null);
     }
 }

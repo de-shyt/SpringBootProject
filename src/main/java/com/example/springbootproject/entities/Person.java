@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "persons")
-@Builder
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Getter

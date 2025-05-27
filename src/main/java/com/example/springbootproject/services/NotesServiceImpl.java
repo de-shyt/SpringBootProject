@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class NotesServiceImpl implements NotesService {
+    private final NoteMapper noteMapper;
     private final NoteRepo noteRepo;
     private final PersonRepo personRepo;
 
@@ -20,10 +21,11 @@ public class NotesServiceImpl implements NotesService {
     public NoteDTO createNote(Long personId, NoteDTO noteDTO) {
         return personRepo.findById(personId)
                 .map(author -> {
-                    Note note = NoteMapper.toNote(noteDTO, author);
+                    Note note = noteMapper.toNote(noteDTO);
+                    note.setAuthor(author);
                     return noteRepo.save(note);
                 })
-                .map(NoteMapper::toNodeDTO)
+                .map(noteMapper::toNoteDTO)
                 .orElse(null);
     }
 
@@ -31,7 +33,7 @@ public class NotesServiceImpl implements NotesService {
     public List<NoteDTO> getNotesByAuthorId(Long authorId) {
         return personRepo.findById(authorId)
                 .map(author -> noteRepo.findByAuthorId(author.getId()))
-                .map(NoteMapper::toNodeDTO)
+                .map(noteMapper::toNoteDTO)
                 .orElse(null);
     }
 
@@ -42,7 +44,7 @@ public class NotesServiceImpl implements NotesService {
                     note.setContent(update.getContent());
                     return noteRepo.save(note);
                 })
-                .map(NoteMapper::toNodeDTO)
+                .map(noteMapper::toNoteDTO)
                 .orElse(null);
     }
 

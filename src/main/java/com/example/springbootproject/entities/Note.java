@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "notes")
-@Builder
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Getter

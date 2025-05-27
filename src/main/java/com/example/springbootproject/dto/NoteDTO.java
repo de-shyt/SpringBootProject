@@ -5,7 +5,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @JsonPropertyOrder({"id", "content", "author"})
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

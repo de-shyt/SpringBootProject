@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@JsonPropertyOrder({"id", "text", "author"})
+@JsonPropertyOrder({"id", "content", "author"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

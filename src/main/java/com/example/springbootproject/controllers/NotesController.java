@@ -19,8 +19,8 @@ public class NotesController {
     }
 
     @GetMapping("allNotes")
-    public List<NoteDTO> getNotesByPersonId(@RequestParam("personId") Long personId) {
-        return service.getNotesByPersonId(personId);
+    public List<NoteDTO> getNotesByAuthorId(@RequestParam("personId") Long personId) {
+        return service.getNotesByAuthorId(personId);
     }
 
     @PutMapping("updateNote")

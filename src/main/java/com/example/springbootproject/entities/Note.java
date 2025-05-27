@@ -4,30 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Entity
-@Table(name = "persons")
+@Table(name = "notes")
 @Builder
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person {
+public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false, length = 20)
-    String name;
+    @Column(nullable = false, length = 300)
+    String content;
 
-    @Column(nullable = false, length = 12)
-    String gender;
-
-    @Column(nullable = false)
-    Integer age;
-
-    @OneToMany(mappedBy = "author")
-    List<Note> notes;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "auhtor_id", nullable = false)
+    Person author;
 }

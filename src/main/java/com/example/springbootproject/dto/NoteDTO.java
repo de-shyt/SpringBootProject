@@ -4,15 +4,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@JsonPropertyOrder({"id", "name", "gender", "age"})
+@JsonPropertyOrder({"id", "text", "author"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PersonDTO {
+public class NoteDTO {
     Long id;
-    String name;
-    String gender;
-    int age;
+    String content;
+    PersonDTO author;
 }

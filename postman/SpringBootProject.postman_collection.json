@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "330d707e-c66f-4ad4-bdda-270474be2b97",
+		"name": "SpringBootProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27904300"
+	},
+	"item": [
+		{
+			"name": "person requests",
+			"item": [
+				{
+					"name": "add Alice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alice\",\n    \"gender\": \"Female\",\n    \"age\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addPerson",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addPerson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Bob",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bob\",\n    \"gender\": \"Male\",\n    \"age\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addPerson",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addPerson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add John",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"gender\": \"Male\",\n    \"age\": 48\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addPerson",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addPerson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/getPersonByName?name=Alice",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getPersonByName"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Alice"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/getPersonById?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getPersonById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by invalid id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/getPersonById?id=111",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getPersonById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by age in range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/getByAgeInRange?min=7&max=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getByAgeInRange"
+							],
+							"query": [
+								{
+									"key": "min",
+									"value": "7"
+								},
+								{
+									"key": "max",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change age",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/updateAge?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateAge"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/changeName?id=2&name=Mallory",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"changeName"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								},
+								{
+									"key": "name",
+									"value": "Mallory"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change gender",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/changeGender?id=1&gender=Cat",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"changeGender"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "gender",
+									"value": "Cat"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove John",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/removePersonById?id=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"removePersonById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "note requests",
+			"item": [
+				{
+					"name": "add note to Alice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Как всем известно, труд облагораживает человека. И поэтому люди с удовольствием ходят на работу. Лично я хожу на службу только потому, что она меня облагораживает.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/notes/addNote?personId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"addNote"
+							],
+							"query": [
+								{
+									"key": "personId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add note to Alice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Людмила Прокофьевна Калугина, директор нашего статистического учреждения. Она знает дело, которым руководит, — такое тоже бывает. Людмила Прокофьевна приходит на службу раньше всех, а уходит позже всех.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/notes/addNote?personId=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"addNote"
+							],
+							"query": [
+								{
+									"key": "personId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get notes by Alice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/allNotes?personId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"allNotes"
+							],
+							"query": [
+								{
+									"key": "personId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update note",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Как всем известно, труд облагораживает человека. И поэтому люди с удовольствием ходят на работу. Лично я хожу на службу только потому, что она меня облагораживает. Если бы не было статистики, мы бы даже не подозревали о том, как хорошо мы работаем.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/notes/updateNote?noteId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"updateNote"
+							],
+							"query": [
+								{
+									"key": "noteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove note",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/removeNote?noteId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"removeNote"
+							],
+							"query": [
+								{
+									"key": "noteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

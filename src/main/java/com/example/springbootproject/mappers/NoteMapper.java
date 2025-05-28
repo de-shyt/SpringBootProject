@@ -7,7 +7,8 @@ import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
+        uses = PersonMapper.class)
 public interface NoteMapper {
     NoteDTO toNoteDTO(Note note);
     List<NoteDTO> toNoteDTO(List<Note> notes);

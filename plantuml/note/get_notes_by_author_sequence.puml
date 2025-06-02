@@ -1,0 +1,14 @@
+actor Client
+participant "NotesController" as Controller
+participant "NotesServiceImpl" as Service
+participant "NoteRepo" as NoteRepo
+participant "NoteMapper" as NoteMapper
+
+Client -> Controller: GET /notes/allNotes?personId=123
+Controller -> Service: getNotesByAuthorId(123)
+Service -> NoteRepo: findByAuthorId(123)
+NoteRepo --> Service: List<Note>
+Service -> NoteMapper: toNoteDTO(notes)
+NoteMapper --> Service: List<NoteDTO>
+Service --> Controller: List<NoteDTO>
+Controller --> Client: 200 OK\n(List<NoteDTO>)

@@ -1,0 +1,16 @@
+actor Client
+participant "BasePersonController" as Controller
+participant "PersonServiceImpl" as Service
+participant "PersonRepo" as PersonRepo
+participant "PersonMapper" as PersonMapper
+
+Client -> Controller: POST /addPerson(PersonDTO)
+Controller -> Service: create(personDTO)
+Service -> PersonMapper: toPerson(personDTO)
+PersonMapper --> Service: Person entity
+Service -> PersonRepo: save(person)
+PersonRepo --> Service: Saved Person
+Service -> PersonMapper: toPersonDTO(person)
+PersonMapper --> Service: PersonDTO
+Service --> Controller: PersonDTO
+Controller --> Client: 201 Created\n(PersonDTO)

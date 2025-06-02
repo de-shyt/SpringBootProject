@@ -1,0 +1,10 @@
+actor Client
+participant "NotesController" as Controller
+participant "NotesServiceImpl" as Service
+participant "NoteRepo" as NoteRepo
+
+Client -> Controller: DELETE /notes/removeNote?noteId=456
+Controller -> Service: deleteNote(456)
+Service -> NoteRepo: deleteById(456)
+Service --> Controller: Success
+Controller --> Client: 204 No Content

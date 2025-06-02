@@ -1,0 +1,18 @@
+actor Client
+participant "NotesController" as Controller
+participant "NotesServiceImpl" as Service
+participant "NoteRepo" as NoteRepo
+participant "NoteMapper" as NoteMapper
+
+Client -> Controller: PUT /notes/updateNote?noteId=456\n(NoteDTO)
+Controller -> Service: updateNote(456, noteDTO)
+Service -> NoteRepo: findById(456)
+NoteRepo --> Service: Optional<Note>
+
+Service -> Note: setContent(noteDTO.content)
+Service -> NoteRepo: save(note)
+NoteRepo --> Service: Updated Note
+Service -> NoteMapper: toNoteDTO(note)
+NoteMapper --> Service: NoteDTO
+Service --> Controller: NoteDTO
+Controller --> Client: 200 OK\n(NoteDTO)

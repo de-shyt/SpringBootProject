@@ -1,0 +1,15 @@
+@startuml person_sequences
+
+title Add Person Sequence
+!include create_person_sequence.puml
+
+newpage Get Person Sequence
+!include get_person_sequence.puml
+
+newpage Change Name Sequence
+!include change_person_name_sequence.puml
+
+newpage Remove Person Sequence
+!include delete_person_sequence.puml
+
+@enduml

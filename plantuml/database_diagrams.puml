@@ -1,0 +1,19 @@
+@startuml DatabaseDiagram
+
+entity persons {
+  * id : Long <<PK>>
+  --
+  * name : String
+  * gender : String
+  * age : Integer
+}
+
+entity notes {
+  * id : Long <<PK>>
+  * content : String
+  * author_id : Long <<FK>>
+}
+
+persons ||-o{ notes
+
+@enduml

@@ -1,0 +1,23 @@
+actor Client
+participant "MutationPersonController" as Controller
+participant "PersonServiceImpl" as Service
+participant "PersonRepo" as PersonRepo
+participant "PersonMapper" as PersonMapper
+
+Client -> Controller: PUT /changeName\n?id=123&name=NewName
+Controller -> Service: changeName(123, "NewName")
+Service -> PersonRepo: findById(123)
+PersonRepo --> Service: Optional<Person>
+
+alt Person exists
+  Service -> Person: setName("NewName")
+  Service -> PersonRepo: save(person)
+  PersonRepo --> Service: Updated Person
+  Service -> PersonMapper: toPersonDTO(person)
+  PersonMapper --> Service: PersonDTO
+  Service --> Controller: PersonDTO
+  Controller --> Client: 200 OK\n(PersonDTO)
+else Person not found
+  Service --> Controller: PersonNotFoundException
+  Controller --> Client: 404 Not Found
+end

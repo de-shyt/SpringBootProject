@@ -1,0 +1,19 @@
+actor Client
+participant "BasePersonController" as Controller
+participant "PersonServiceImpl" as Service
+participant "PersonRepo" as PersonRepo
+participant "NoteRepo" as NoteRepo
+
+Client -> Controller: DELETE /removePersonById?id=123
+Controller -> Service: remove(123)
+Service -> PersonRepo: findById(123)
+
+alt Person exists
+    Service -> NoteRepo: deleteByAuthorId(123)
+    Service -> PersonRepo: delete(person)
+    Service --> Controller: Success
+    Controller --> Client: 204 No Content
+else Person not found
+    Service --> Controller: Success
+    Controller --> Client: 204 No Content
+end

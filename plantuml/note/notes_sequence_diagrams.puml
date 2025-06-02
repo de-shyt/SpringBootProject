@@ -1,0 +1,15 @@
+@startuml note_sequences
+
+title Create Note Sequence
+!include create_note_sequence.puml
+
+newpage Get Notes By Author Sequence
+!include get_notes_by_author_sequence.puml
+
+newpage Update Note Sequence
+!include update_note_sequence.puml
+
+newpage Delete Note Sequence
+!include delete_note_sequence.puml
+
+@enduml

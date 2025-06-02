@@ -1,0 +1,137 @@
+@startuml ClassDiagram
+
+' Entities
+class Person {
+  - Long id
+  - String name
+  - String gender
+  - Integer age
+  + List<Note> notes
+}
+
+class Note {
+  - Long id
+  - String content
+  - Person author
+}
+
+' DTOs
+class PersonDTO {
+  - Long id
+  - String name
+  - String gender
+  - int age
+}
+
+class NoteDTO {
+  - Long id
+  - String content
+  - PersonDTO author
+}
+
+' Repositories
+interface PersonRepo {
+  + List<Person> findByName(String name)
+  + List<Person> findByAgeBetween(int minAge, int maxAge)
+}
+
+interface NoteRepo {
+  + List<Note> findByAuthorId(Long authorId)
+}
+
+' Services
+interface BasePersonService {
+  + PersonDTO create(PersonDTO personDTO)
+  + void remove(Long id)
+}
+
+interface QueryPersonService {
+  + PersonDTO getById(Long id)
+  + List<PersonDTO> getByName(String name)
+  + List<PersonDTO> getByAgeInRange(int minAge, int maxAge)
+  + List<PersonDTO> getAll()
+}
+
+interface MutationPersonService {
+  + PersonDTO increaseAgeByOne(Long id)
+  + PersonDTO changeName(Long id, String newName)
+  + PersonDTO changeGender(Long id, String newGender)
+}
+
+interface NotesService {
+  + NoteDTO createNote(Long personId, NoteDTO noteDTO)
+  + List<NoteDTO> getNotesByAuthorId(Long authorId)
+  + NoteDTO updateNote(Long noteId, NoteDTO update)
+  + void deleteNote(Long noteId)
+}
+
+' Controllers
+class BasePersonController {
+  - BasePersonService personService
+  + addPerson()
+  + removePersonById()
+}
+
+class QueryPersonController {
+  - QueryPersonService personService
+  + getPersonByName()
+  + getPersonById()
+  + getByAgeInRange()
+  + getAll()
+}
+
+class MutationPersonController {
+  - MutationPersonService personService
+  + updateAge()
+  + changeName()
+  + changeGender()
+}
+
+class NotesController {
+  - NotesService service
+  + addNote()
+  + getNotesByAuthorId()
+  + updateNote()
+  + removeNote()
+}
+
+' Mappers
+interface PersonMapper {
+  + PersonDTO toPersonDTO(Person person)
+  + List<PersonDTO> toPersonDTO(List<Person> personList)
+  + Person toPerson(PersonDTO personDTO)
+}
+
+interface NoteMapper {
+  + NoteDTO toNoteDTO(Note note)
+  + List<NoteDTO> toNoteDTO(List<Note> notes)
+  + Note toNote(NoteDTO noteDTO)
+}
+
+' Relationships
+Person "1" *-- "0..*" Note
+PersonRepo ..> Person
+NoteRepo ..> Note
+
+PersonMapper ..> Person
+PersonMapper ..> PersonDTO
+NoteMapper ..> Note
+NoteMapper ..> NoteDTO
+
+BasePersonService <|.. PersonServiceImpl
+QueryPersonService <|.. PersonServiceImpl
+MutationPersonService <|.. PersonServiceImpl
+NotesService <|.. NotesServiceImpl
+
+BasePersonController --> BasePersonService
+QueryPersonController --> QueryPersonService
+MutationPersonController --> MutationPersonService
+NotesController --> NotesService
+
+PersonServiceImpl --> PersonRepo
+PersonServiceImpl --> PersonMapper
+NotesServiceImpl --> NoteRepo
+NotesServiceImpl --> NoteMapper
+NotesServiceImpl --> PersonRepo
+
+@enduml

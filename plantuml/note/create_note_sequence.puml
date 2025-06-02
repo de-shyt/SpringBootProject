@@ -1,0 +1,21 @@
+actor Client
+participant "NotesController" as Controller
+participant "NotesServiceImpl" as Service
+participant "PersonRepo" as PersonRepo
+participant "NoteRepo" as NoteRepo
+participant "NoteMapper" as NoteMapper
+
+Client -> Controller: POST /notes/addNote?personId=123\n(NoteDTO)
+Controller -> Service: createNote(123, noteDTO)
+Service -> PersonRepo: findById(123)
+PersonRepo --> Service: Optional<Person>
+
+Service -> NoteMapper: toNote(noteDTO)
+NoteMapper --> Service: Note entity
+Service -> Note: setAuthor(person)
+Service -> NoteRepo: save(note)
+NoteRepo --> Service: Saved Note
+Service -> NoteMapper: toNoteDTO(note)
+NoteMapper --> Service: NoteDTO
+Service --> Controller: NoteDTO
+Controller --> Client: 201 Created\n(NoteDTO)

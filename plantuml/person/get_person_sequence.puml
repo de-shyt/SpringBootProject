@@ -1,0 +1,20 @@
+actor Client
+participant "QueryPersonController" as Controller
+participant "PersonServiceImpl" as Service
+participant "PersonRepo" as PersonRepo
+participant "PersonMapper" as PersonMapper
+
+Client -> Controller: GET /getPersonById?id=123
+Controller -> Service: getById(123)
+Service -> PersonRepo: findById(123)
+PersonRepo --> Service: Optional<Person>
+
+alt Person found
+  Service -> PersonMapper: toPersonDTO(person)
+  PersonMapper --> Service: PersonDTO
+  Service --> Controller: PersonDTO
+  Controller --> Client: 200 OK\n(PersonDTO)
+else Person not found
+  Service --> Controller: PersonNotFoundException
+  Controller --> Client: 404 Not Found
+end

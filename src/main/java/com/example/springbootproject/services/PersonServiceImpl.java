@@ -2,6 +2,7 @@ package com.example.springbootproject.services;
 
 import com.example.springbootproject.dto.PersonDTO;
 import com.example.springbootproject.entities.Person;
+import com.example.springbootproject.exceptions.PersonNotFoundException;
 import com.example.springbootproject.mappers.PersonMapper;
 import com.example.springbootproject.repositories.PersonRepo;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
     public PersonDTO getById(Long id) {
         return repo.findById(id)
                 .map(personMapper::toPersonDTO)
-                .orElse(null);
+                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     return repo.save(person);
                 })
                 .map(personMapper::toPersonDTO)
-                .orElse(null);
+                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
     @Override
@@ -68,7 +69,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     return repo.save(person);
                 })
                 .map(personMapper::toPersonDTO)
-                .orElse(null);
+                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
     @Override
@@ -79,6 +80,6 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     return repo.save(person);
                 })
                 .map(personMapper::toPersonDTO)
-                .orElse(null);
+                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 }

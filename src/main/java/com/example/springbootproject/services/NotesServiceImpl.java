@@ -2,6 +2,8 @@ package com.example.springbootproject.services;
 
 import com.example.springbootproject.dto.NoteDTO;
 import com.example.springbootproject.entities.Note;
+import com.example.springbootproject.exceptions.NoteNotFoundException;
+import com.example.springbootproject.exceptions.PersonNotFoundException;
 import com.example.springbootproject.mappers.NoteMapper;
 import com.example.springbootproject.repositories.NoteRepo;
 import com.example.springbootproject.repositories.PersonRepo;
@@ -26,7 +28,7 @@ public class NotesServiceImpl implements NotesService {
                     return noteRepo.save(note);
                 })
                 .map(noteMapper::toNoteDTO)
-                .orElse(null);
+                .orElseThrow(()  -> new PersonNotFoundException(personId));
     }
 
     @Override
@@ -34,7 +36,7 @@ public class NotesServiceImpl implements NotesService {
         return personRepo.findById(authorId)
                 .map(author -> noteRepo.findByAuthorId(author.getId()))
                 .map(noteMapper::toNoteDTO)
-                .orElse(null);
+                .orElseThrow(() -> new PersonNotFoundException(authorId));
     }
 
     @Override
@@ -45,7 +47,7 @@ public class NotesServiceImpl implements NotesService {
                     return noteRepo.save(note);
                 })
                 .map(noteMapper::toNoteDTO)
-                .orElse(null);
+                .orElseThrow(() -> new NoteNotFoundException(noteId));
     }
 
     @Override

@@ -21,8 +21,8 @@ public class Note {
     @Column(nullable = false, length = 300)
     String content;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "auhtor_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
     Person author;
 
     @ManyToMany(mappedBy = "notes")

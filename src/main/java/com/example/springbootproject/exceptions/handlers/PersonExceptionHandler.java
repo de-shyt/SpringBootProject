@@ -16,5 +16,4 @@ public class PersonExceptionHandler {
         ErrorResponse response = ErrorResponseMapper.toNotFoundErrorResponse(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-
 }

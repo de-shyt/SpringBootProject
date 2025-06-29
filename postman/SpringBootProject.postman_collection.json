@@ -470,6 +470,165 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "board requests",
+			"item": [
+				{
+					"name": "create board",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": 1,\n    \"description\": \"Доска для заметок о статистике\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/boards/create",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["boards", "create"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update board",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": 1,\n    \"description\": \"Обновленная доска для заметок\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/boards/update?boardId=1",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["boards", "update"],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add note to board",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/boards/addNote?boardId=1&noteId=1",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["boards", "addNote"],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "1"
+								},
+								{
+									"key": "noteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get notes on board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/boards/getNotes?boardId=1",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["boards", "getNotes"],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove note from board",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/boards/removeNote?boardId=1&noteId=1",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["boards", "removeNote"],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "1"
+								},
+								{
+									"key": "noteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete board",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/boards/delete?boardId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"boards",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

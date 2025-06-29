@@ -10,10 +10,24 @@ entity persons {
 
 entity notes {
   * id : Long <<PK>>
+  --
   * content : String
   * author_id : Long <<FK>>
 }
 
-persons ||-o{ notes
+entity "boards" as boards {
+  * id : Long <<PK>>
+  --
+  * description : String
+}
+
+entity "board_notes" as board_notes {
+  * board_id <<PK,FK>>
+  * note_id <<PK,FK>>
+}
+
+persons ||--o{ notes : "author_id"
+notes }o--|| board_notes : "note_id"
+boards }o--|| board_notes : "board_id"
 
 @enduml

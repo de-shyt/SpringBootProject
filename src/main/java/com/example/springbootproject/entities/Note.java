@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Entity
 @Table(name = "notes")
 @NoArgsConstructor(force = true)
@@ -22,4 +24,7 @@ public class Note {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "auhtor_id", nullable = false)
     Person author;
+
+    @ManyToMany(mappedBy = "notes")
+    List<Board> boards;
 }

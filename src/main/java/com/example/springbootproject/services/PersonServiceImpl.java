@@ -25,16 +25,16 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
         logger.info("Creating new person with name: {}", personDTO.getName());
         Person person = personMapper.toPerson(personDTO);
         Person savedPerson = repo.save(person);
-        logger.info("Created person with ID: {}", savedPerson.getId());
+        logger.debug("Created person with ID: {}", savedPerson.getId());
         return personMapper.toPersonDTO(savedPerson);
     }
 
     @Override
     public PersonDTO getById(Long id) {
-        logger.debug("Fetching person by ID: {}", id);
+        logger.info("Fetching person by ID: {}", id);
         return repo.findById(id)
                 .map(person -> {
-                    logger.info("Found person with ID: {}", id);
+                    logger.debug("Found person with ID: {}", id);
                     return personMapper.toPersonDTO(person);
                 })
                 .orElseThrow(() -> {
@@ -55,7 +55,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
     public List<PersonDTO> getByAgeInRange(int minAge, int maxAge) {
         logger.info("Searching persons by age range: {} - {}", minAge, maxAge);
         List<Person> persons = repo.findByAgeBetween(minAge, maxAge);
-        logger.info("Found {} persons in age range {} - {}", persons.size(), minAge, maxAge);
+        logger.debug("Found {} persons in age range {} - {}", persons.size(), minAge, maxAge);
         return personMapper.toPersonDTO(persons);
     }
 
@@ -63,7 +63,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
     public List<PersonDTO> getAll() {
         logger.info("Fetching all persons");
         List<Person> persons = repo.findAll();
-        logger.info("Found {} persons in total", persons.size());
+        logger.debug("Found {} persons in total", persons.size());
         return personMapper.toPersonDTO(persons);
     }
 
@@ -74,7 +74,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
             .ifPresentOrElse(
                 person -> {
                     repo.delete(person);
-                    logger.info("Successfully deleted person with ID: {}, name: '{}'",
+                    logger.debug("Deleted person with ID: {}, name: '{}'",
                             id, person.getName());
                 },
                 () -> logger.warn("Person with ID: {} does not exist", id)
@@ -88,7 +88,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                 .map(person -> {
                     person.setAge(person.getAge() + 1);
                     Person updated = repo.save(person);
-                    logger.info("Increased age for person ID: {}, new age: {}",
+                    logger.debug("Increased age for person ID: {}, new age: {}",
                             id, updated.getAge());
                     return updated;
                 })
@@ -107,7 +107,7 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
                     String oldName = person.getName();
                     person.setName(newName);
                     Person updated = repo.save(person);
-                    logger.info("Changed name for person ID: {} from '{}' to '{}'",
+                    logger.debug("Changed name for person ID: {} from '{}' to '{}'",
                             id, oldName, newName);
                     return updated;
                 })
@@ -120,12 +120,13 @@ public class PersonServiceImpl implements BasePersonService, QueryPersonService,
 
     @Override
     public PersonDTO changeGender(Long id, String newGender) {
+        logger.info("Attempting to change gender for person ID: {} to '{}'", id, newGender);
         return repo.findById(id)
                 .map(person -> {
                     String oldGender = person.getGender();
                     person.setGender(newGender);
                     Person updated = repo.save(person);
-                    logger.info("Changed gender for person ID: {} from '{}' to '{}'",
+                    logger.debug("Changed gender for person ID: {} from '{}' to '{}'",
                             id, oldGender, newGender);
                     return updated;
                 })

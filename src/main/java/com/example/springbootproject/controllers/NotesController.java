@@ -8,27 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("notes")
+@RequestMapping("/notes")
 @AllArgsConstructor
 public class NotesController {
     private final NotesService service;
 
-    @PostMapping("addNote")
+    @PostMapping("/addNote")
     public NoteDTO addNote(@RequestParam("personId") Long personId, @RequestBody NoteDTO noteDTO) {
         return service.createNote(personId, noteDTO);
     }
 
-    @GetMapping("allNotes")
+    @GetMapping("/allNotes")
     public List<NoteDTO> getNotesByAuthorId(@RequestParam("personId") Long personId) {
         return service.getNotesByAuthorId(personId);
     }
 
-    @PutMapping("updateNote")
+    @PutMapping("/updateNote")
     public NoteDTO updateNote(@RequestParam("noteId") Long noteId, @RequestBody NoteDTO noteDTO) {
         return service.updateNote(noteId, noteDTO);
     }
 
-    @DeleteMapping("removeNote")
+    @DeleteMapping("/removeNote")
     public void removeNoteById(@RequestParam("noteId") Long noteId) {
         service.deleteNote(noteId);
     }

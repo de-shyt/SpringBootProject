@@ -14,12 +14,12 @@ import java.util.List;
 public class QueryPersonController {
     private final QueryPersonService personService;
 
-    @GetMapping("getPersonByName")
+    @GetMapping("/getPersonByName")
     public List<PersonDTO> getPersonByName(@RequestParam("name") String personName) {
         return personService.getByName(personName);
     }
 
-    @GetMapping("getPersonById")
+    @GetMapping("/getPersonById")
     public PersonDTO getPersonById(@RequestParam("id") Long personId) {
         return personService.getById(personId);
     }

@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("boards")
+@RequestMapping("/boards")
 @AllArgsConstructor
 public class BoardsController {
     private final BoardService service;
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public BoardDTO createBoard(@RequestBody BoardDTO boardDTO) {
         return service.createBoard(boardDTO);
     }
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public BoardDTO updateBoard(@RequestParam Long boardId, @RequestBody BoardDTO boardDTO) {
         return service.updateBoard(boardId, boardDTO);
     }
 
-    @DeleteMapping("delete")
+    @DeleteMapping("/delete")
     public void deleteBoard(@RequestParam Long boardId) {
         service.deleteBoard(boardId);
     }
 
-    @PostMapping("addNote")
+    @PostMapping("/addNote")
     public void addNote(@RequestParam Long boardId, @RequestParam Long noteId) {
         service.addNoteOnBoard(boardId, noteId);
     }
 
-    @GetMapping("getNotes")
+    @GetMapping("/getNotes")
     public List<NoteDTO> getNotes(@RequestParam Long boardId) {
         return service.getNotesOnBoard(boardId);
     }
 
-    @DeleteMapping("removeNote")
+    @DeleteMapping("/removeNote")
     public void removeNote(@RequestParam Long boardId, @RequestParam Long noteId) {
         service.removeNoteFromBoard(boardId, noteId);
     }

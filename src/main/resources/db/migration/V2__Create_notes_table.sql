@@ -1,0 +1,5 @@
+CREATE TABLE notes (
+    id BIGSERIAL PRIMARY KEY,
+    content VARCHAR(300) NOT NULL,
+    author_id BIGINT NOT NULL
+);

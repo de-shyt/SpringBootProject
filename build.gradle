@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.4.5'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'io.freefair.lombok' version '8.13.1'
+    id 'org.flywaydb.flyway' version '9.22.3'
 }
 
 group = 'com.example'
@@ -28,14 +29,28 @@ dependencies {
 
     implementation 'org.springframework.kafka:spring-kafka'
 
+    implementation 'org.flywaydb:flyway-core'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
+
     runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.flywaydb:flyway-database-postgresql'
+
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/personRepo'
+    user = 'deshyt'
+    password = 'pwd'
+    locations = ['classpath:db/migration']
+    baselineOnMigrate = true
+    validateOnMigrate = true
 }

@@ -1,0 +1,6 @@
+CREATE TABLE persons (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    gender VARCHAR(12) NOT NULL,
+    age INTEGER NOT NULL
+);
